@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Plataforma Educativa</title>
+  <link rel="stylesheet" href="index.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+  <!--  APP CONTENIDO -->
+  <div class="app-container">
+    <!-- Header -->
+    <header class="header">
+      <div class="header-left">
+        <i class="fas fa-graduation-cap"></i>
+        <h1>Plataforma Educativa</h1>
+      </div>
+      <div class="stats">
+        <div class="stat">
+          <span id="totalTutores">0</span> Tutores
+        </div>
+        <div class="stat">
+          <span id="totalEstudiantes">0</span> Estudiantes
+        </div>
+      </div>
+    </header>
+
+    <!-- Tabs -->
+    <nav class="tabs">
+      <button class="tab active" data-tab="tutores">
+        <i class="fas fa-chalkboard-teacher"></i> Tutores
+      </button>
+      <button class="tab" data-tab="estudiantes">
+        <i class="fas fa-users"></i> Estudiantes
+      </button>
+    </nav>
+
+    <!-- CONTENIDO TABS -->
+    <main>
+      <!-- Tab Tutores -->
+      <div id="tutores" class="tab-content active">
+        <section class="form-section">
+          <h2><i class="fas fa-plus"></i> Nuevo Tutor</h2>
+          <form id="formTutor">
+            <div class="form-row">
+              <div class="form-group">
+                <label><i class="fas fa-user"></i> Nombre</label>
+                <input type="text" id="nombreTutor" name="nombreTutor" placeholder="Ej: Juan Pérez" required>
+              </div>
+              <div class="form-group">
+                <label><i class="fas fa-envelope"></i> Email</label>
+                <input type="email" id="emailTutor" name="emailTutor" placeholder="email@tutores.mx" required>
+              </div>
+            </div>
+            <button type="submit"><i class="fas fa-save"></i> Agregar Tutor</button>
+          </form>
+        </section>
+
+        <section class="list-section">
+          <h2><i class="fas fa-list"></i> Lista de Tutores</h2>
+          <div id="listaTutores" class="loading">
+            <i class="fas fa-spinner fa-spin"></i> Cargando tutores...
+          </div>
+        </section>
+      </div>
+
+      <!-- Tab Estudiantes -->
+      <div id="estudiantes" class="tab-content">
+        <section class="form-section">
+          <h2><i class="fas fa-user-plus"></i> Nuevo Estudiante</h2>
+          <form id="formEstudiante">
+            <div class="form-row">
+              <div class="form-group">
+                <label><i class="fas fa-user"></i> Nombre</label>
+                <input type="text" id="nombreEstudiante" name="nombreEstudiante" placeholder="Ej: María García" required>
+              </div>
+              <div class="form-group">
+                <label><i class="fas fa-chalkboard-teacher"></i> Tutor</label>
+                <select id="tutorSelect" name="tutorSelect" required>
+                  <option value="">Selecciona un tutor</option>
+                </select>
+              </div>
+            </div>
+            <button type="submit"><i class="fas fa-save"></i> Agregar Estudiante</button>
+          </form>
+        </section>
+
+        <section class="list-section">
+          <h2><i class="fas fa-list"></i> Lista de Estudiantes</h2>
+          <div id="listaEstudiantes" class="loading">
+            <i class="fas fa-spinner fa-spin"></i> Cargando estudiantes...
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <!--MODAL EDITAR  -->
+  <div id="modalEditar" style="display: none;">
+    <div class="modal-container">
+      <div class="modal-header">
+        <h2><i class="fas fa-edit"></i> Editar Estudiante</h2>
+        <button type="button" class="modal-close" onclick="cerrarModal()">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      
+      <form id="formEditarEstudiante">
+        <input type="hidden" id="editarId" name="editarId">
+        
+        <div class="modal-body">
+          <div class="form-group">
+            <label><i class="fas fa-user"></i> Nombre</label>
+            <input type="text" id="editarNombre" name="editarNombre" required>
+          </div>
+          
+          <div class="form-group">
+            <label><i class="fas fa-chalkboard-teacher"></i> Tutor</label>
+            <select id="editarTutor" name="editarTutor">
+              <option value="">Cargando...</option>
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <label><i class="fas fa-star"></i> Calificación (0-10)</label>
+            <input type="number" id="editarCalificacion" name="editarCalificacion" 
+                   min="0" max="10" step="0.1">
+          </div>
+        </div>
+        
+        <div class="modal-actions">
+          <button type="button" class="btn-cancel" onclick="cerrarModal()">Cancelar</button>
+          <button type="submit" class="btn-save">
+            <i class="fas fa-save"></i> Guardar Cambios
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="renderer.js"></script>
+</body>
+</html>
