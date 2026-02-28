@@ -1,1 +1,2 @@
-Actividades ealizadas en clase 
+Actividades realizadas en clase de creacion y configuracion
+
